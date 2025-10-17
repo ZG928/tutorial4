@@ -1,0 +1,14 @@
+name: Build and Test with Maven
+on: [push]  # 当远程仓库收到push时，自动触发工作流
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用Ubuntu系统执行
+    steps:
+    - uses: actions/checkout@v4  # 拉取远程仓库代码到CI环境
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Run Maven build and test
+      run: mvn clean test  # 执行Maven构建和测试命令
